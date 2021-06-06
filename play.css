@@ -1,0 +1,140 @@
+@import url(style.css);
+
+h1{
+	margin-top: 2rem;
+}
+
+.screen{
+	margin-top: 2.5rem;
+	height: 35rem;
+}
+
+.heart-box{
+	margin-top: 2rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.heart{
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+	color: red;
+	font-size: 3rem;
+}
+
+#mid{
+	display: flex;
+	align-content: center;
+}
+
+.normal-button{
+	padding: 12px 50px;
+	color: white !important;
+	background: var(--mainColor) none repeat scroll 0% 0%;
+	text-decoration: none !important;
+	display: inline-block;
+	border: medium none;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: inherit;
+	font-family: inherit;
+	line-height: inherit;
+	margin-top: 0.6rem;
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+}
+
+button:hover, button:focus, button:active{
+	background-color: var(--offColor);
+}
+
+.button-box {
+	margin-top: 2rem;
+	align-self: center;
+	margin-left: calc(50% - 175px);
+	width: 350px;
+	height: 350px;
+	display: flex;                       /* establish flex container */
+	flex-wrap: wrap;                     /* enable flex items to wrap */
+	justify-content: space-around;
+}
+
+.sound-button {
+	border: medium none;
+	border-radius: 12%;
+	flex: 1 1 31%;
+	margin: 3px;
+	background: var(--mainColor) none repeat scroll 0% 0%;
+	color: white !important;
+	font-size: 3rem;
+}
+
+canvas{
+	outline-color: orange;
+	background-color: #ded7f0;
+	border-radius: 1rem;
+	padding: 1rem;
+	margin-top: 2rem;
+	margin-bottom: 10rem;
+	border-style: solid;
+	border-color: var(--mainColor);
+}
+
+.outer-pop{
+	display: none;
+	position: fixed;
+	width:  100vw;
+	height: 100vh;
+	background-color: rgba(40,40,40,0.8);
+
+}
+
+.pop-up{
+
+	position: absolute;
+	--my-width: 350px;
+	--my-height: 250px;
+
+
+	width:  var(--my-width);
+	height: var(--my-height);
+
+	top: calc(50vh - var(--my-height)/2);
+	left: calc(50vw - var(--my-width)/2);
+	outline-color: orange;
+	outline-style: solid;
+	outline-width: 0px;
+
+	padding: 20px;
+
+	
+	background-color: var(--backgroundLight);
+	color: var(--contrastLight);
+	border-radius: 20px;
+	border-color: var(--mainColor);
+	border-style: solid;
+
+}
+
+.smol-button{
+	margin-top: 10px;
+	border: medium none;
+	border-radius: 12%;
+
+	background: var(--mainColor);
+	font-size: 0.8rem;
+	font-style: normal;
+	color: inherit;
+	word-wrap: break-word;
+	padding-top: 1rem;
+
+	width: calc(var(--my-width) / 4);
+	height: calc(var(--my-width) / 4);
+}
+
+#redirect-h3{
+	margin: 2rem;
+}

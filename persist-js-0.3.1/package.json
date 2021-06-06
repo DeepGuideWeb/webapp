@@ -1,0 +1,21 @@
+{
+  "name": "persist-js",
+  "version": "0.3.1",
+  "description": "client-side persistent storage library",
+  "main": "src/persist.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nl0/persist-js.git"
+  },
+  "keywords": [
+    "browser",
+    "persistance",
+    "localStorage"
+  ],
+  "author": "Jeremy Durham <jeremydurham@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nl0/persist-js/issues"
+  },
+  "homepage": "https://github.com/nl0/persist-js#readme"
+}

@@ -1,0 +1,153 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Firebase test</title>
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+	<script src="firebase.js" charset="utf-8"></script>
+</head>
+<body>
+	<h1>Convert Database</h1>
+	<div>	
+		<h2>Paste JSON</h2>
+		<input type="text" id="t">
+		<button id="b">Convert</button>
+	</div>
+	<div>
+		<h2>Select JSON file</h2>
+		<input type="file" id="br">
+		<button id="b2">Convert</button>
+	</div>
+	<div>
+		<h2>Results</h2>
+		<h3 id="h3">No input</h3>
+		<textarea id="t2" rows="1"></textarea>
+		<h4></h4>
+		<button id="b3">Copy</button>
+		<button id="b4">Download</button>
+	</div>
+	<div>
+		<h2>Go back</h2>
+		<a href="index.html">Return</a>
+	</div>
+	
+</body>
+<script>
+	var t = document.querySelector('#t');
+	var t2 = document.querySelector('#t2');
+	var b = document.querySelector('#b');
+	var b2 = document.querySelector('#b2');
+	var b3 = document.querySelector('#b3');
+	var br = document.querySelector('#br');
+	var h3 = document.querySelector('#h3');
+
+	var output = '';
+	b.addEventListener('click', () => {
+		parseText(t.value);
+	})
+
+	b2.addEventListener('click', () => {
+		readSingleFile(br);
+	})
+
+	b4.addEventListener('click', () => {
+		if (output != ''){
+			reg = /\t/g;
+			output = output.replace(reg, ',');
+			console.log(output);
+			downloadBlobAsFile(output, 'output.csv');
+		}
+	})
+
+	function parseText(text){
+		sep = '\t';
+		h3.innerHTML = 'Converting...'
+		let s = text;
+		var j = JSON.parse(s);
+		let first = true;
+		var r = '';
+		Object.entries(j.unsorted).forEach(e => {
+			if (first) {
+				r += printHeader(e[1]);
+				first = false;
+			}
+			r += printObj(e[1])
+		});
+		console.log(r);
+		t2.value = r;
+		output = r;
+		h3.innerHTML = 'Conversion Done!'
+	}
+
+
+
+	function readSingleFile(e) {
+		file = e.files[0];
+		var str;
+		
+		let reader = new FileReader();
+
+		reader.onload = (e) => {
+			const file = e.target.result;
+
+			parseText(file);
+		}
+
+		reader.onerror = (e) => alert(e.target.error.name);
+
+		reader.readAsText(file);
+	}
+
+
+	b3.addEventListener('click', () => {
+		t2.select();
+		document.execCommand('copy');
+		b3.innerHTML = 'Copied';
+		setTimeout(() => {b3.innerHTML = 'Copy'},1000)
+	})
+
+	function printHeader(e) {
+		let o = '';
+		Object.entries(e).forEach(e => {
+			o += e[0] + sep;
+		})
+		return o + '\n';
+	}
+
+	function printObj(e) {
+		let o = '';
+		Object.entries(e).forEach(e => {
+			o += e[1] + sep;
+		})
+		return o + '\n';
+	}
+
+	const downloadBlobAsFile = function(data, filename){
+				const contentType = 'application/octet-stream';
+        if(!data) {
+            console.error(' No data')
+            return;
+        }
+
+        if(!filename) filename = 'filetodonwload.txt'
+
+        if(typeof data === "object"){
+            data = JSON.stringify(data, undefined, 4)
+        }
+
+        var blob = new Blob([data], {type: contentType}),
+            e    = document.createEvent('MouseEvents'),
+            a    = document.createElement('a')
+
+        a.download = filename
+        a.href = window.URL.createObjectURL(blob)
+        a.dataset.downloadurl =  [contentType, a.download, a.href].join(':')
+        e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+        a.dispatchEvent(e)
+    }
+
+</script>
+</html>

@@ -1,0 +1,265 @@
+:root{
+	--mainColorLight: #A25BE4;
+	--offColorLight: #9B50E2;
+	--backgroundLight: rgb(255, 255, 255);
+	--contrastLight:rgb(51, 51, 51);
+	--guyLight: url(imgs/svgs/guyDark.svg);
+	
+	--mainColorDark: #A25BE4;
+	--offColorDark: #AF73E8;
+	--backgroundDark: var(--contrastLight);
+	--contrastDark: var(--backgroundLight);
+	--guyDark: url(imgs/svgs/guyWhite.svg);
+
+	--mainColor: var(--mainColorLight);
+	--offColor: var(--offColorLight);
+	--background: var(--backgroundLight);
+	--contrast: var(--contrastLight);
+	--guy: var(--guyLight);
+}
+
+.navbar.navbar-dark{
+	background-color: var(--mainColor);
+	color: var(--mainColor);
+}
+
+.mybutton{
+	min-width: 25vh;
+	max-width: 100vw;
+	min-height: 25vh;
+	max-height: 100vw;
+	background-color: var(--mainColor);
+	border-color: var(--mainColor);
+	text-align: justify;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: 1.5%;
+	border-radius: 25%;
+}
+
+.mybutton:focus{
+  	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0);
+  	outline: 0 none;
+}
+
+.mybutton:hover{
+	background-color: var(--offColor);
+	border-color: var(--offColor);
+	background-position-y: 45%;
+}
+
+.mybutton:active{
+	border-width: 0;
+}
+
+.navbar {
+	background-color: var(--mainColor);
+}
+
+.navbar-brand{
+	color: white
+}
+
+.nav-link{
+	color: white
+}
+
+.nav-link:hover{
+	color: white
+}
+
+.bi-moon, .bi-moon-fill{
+	font-size: 25px;
+}
+
+.navbar-toggler-icon{
+	color: white;
+}
+
+#play{
+	background-image: url('imgs/svgs/play.svg');
+	background-size: 60%;
+}
+
+#settings{
+	background-image: url('imgs/svgs/gear.svg');
+	background-size: 40%;
+}
+
+#help{
+	background-image: url('imgs/svgs/question.svg');
+	background-size: 60%;
+}
+
+#stats{
+	background-image: url('imgs/svgs/bar-chart-line.svg');
+	background-size: 50%;
+}
+
+.container{
+	max-width: 960px;
+}
+
+#rest{
+	display: flex;
+	flex-direction: row;
+	flex-grow:1;
+	align-items: center;
+}
+
+body{
+	background-color: var(--background);
+	color: var(--contrast);
+}
+
+#daddy{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+}
+
+#middle{
+	flex: 1;
+}
+
+#normal{
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+}
+
+.feef{
+	margin-top: 10px;
+	margin-bottom: 5px;
+	width: 100%;
+	margin-right: auto;
+	text-align: left;
+}
+
+.btn-secondary.focus{
+	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0);
+	outline: 0 none;
+}
+
+.active{
+	background-color: var(--mainColor);
+}
+
+*{
+	outline-style: solid;
+	outline-color: green;
+	outline-width: 0px;
+}
+
+#play-vert{
+	margin-top: 100px;
+}
+
+.vert{
+	display: flex;
+	flex-direction: column;
+}
+
+.hor{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	flex: 1;
+	justify-content: center;
+}
+
+.kekers{
+	height:100px;
+	width:100px;
+	background-color: var(--mainColor);
+	border-color: var(--mainColor);
+	border-radius: 12%;
+	flex-shrink: 0;
+	margin: 2px;
+	font-family: inherit;
+	color: white;
+	justify-content: center;
+	padding: 0;
+	word-spacing: 1.1rem;
+	white-space: normal;
+	font-size: 1.4rem;
+}
+
+.kekers:focus{
+  	box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0);
+  	outline: 0 none;
+}
+
+.kekers:hover{
+	background-color: var(--offColor);
+	border-color: var(--offColor);
+	background-position-y: 45%;
+}
+
+.kekers:active{
+	border-width: 0;
+}
+
+#center{
+	margin-top: 50px;
+	display: flex;
+	justify-content: left;
+	align-items: flex-start;
+	flex-direction: column;
+	text-align: left;
+}
+
+.ind{
+	margin-left: 15px;
+}
+
+#sigh{
+	display: flex;
+	justify-content: center;
+	margin: 20px;
+}
+
+.stats{
+	margin-top: 30px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+	border-bottom: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	text-align: justify;
+}
+
+.settings{
+	width: 100%;
+	padding-bottom: 20px;
+	
+	margin-top: 30px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-flow: column;
+	align-items: flex-start;
+	border-bottom: lightgray;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+}
+
+.game-icon{
+	height: 160px;
+	outline-color: orange;
+	outline-style: solid;
+	outline-width: 0px;
+	background-image: var(--guy);
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	background-size: contain;
+
+	margin: 2rem;
+}

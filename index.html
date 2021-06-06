@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Deep Guide WebApp</title>
+
+	<!-- Firebase API -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+	<script src="firebase.js"></script>
+
+	<!-- Chart Js API -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.0/dist/chart.min.js"></script>
+
+	<!-- jQuery & Popper.js -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+	<!-- Bootstrap css + js -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- PersistJs -->
+	<script type='text/javascript' src='persist-js-0.3.1\persist-min.js'></script>
+	
+</head>
+
+<body class="text-center" class="d-flex align-items-center" id="header-main">
+	<div class="outer-pop">
+		<div class="pop-up">
+			<h3>I'm playing this on...</h3>
+			<h4>Speakers not recommended</h4>
+			<div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+				<button id="ear"  class="smol-button" value="earbuds"><i class="bi bi-earbuds" style="font-size: 2rem;"></i><p style="font-size: 0.9rem;">Earbuds</p></button>
+				<button id="head"  class="smol-button" value="headphones"><i class="bi bi-headphones" style="font-size: 2rem;"></i><p style="font-size: 0.8rem;">Headphones</p></button>
+				<button id="other"  class="smol-button" value="other"><i class="bi bi-question-lg" style="font-size: 2rem;"></i><p style="font-size: 0.9rem;">Other</p></button>
+			</div>
+		</div>
+	</div>
+	<div id="daddy">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<div class="container container-wide position-relative">
+				<a class="navbar-brand" href="index.html">Play</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+			
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					
+					<li class="nav-item active">
+					<a class="nav-link" href="settings.html">
+						Settings
+					</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="help.html">
+							Help
+						</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="stats.html">
+							Stats
+						</a>
+					</li>
+				</ul>
+					<a class="nav-link" id="toggle" href="#">
+						<i class="bi bi-moon"></i>
+					</a>
+				</div>
+			</div>
+		</nav>
+
+		<div id='screen-daddy' class="container">
+			<div id="start" class="screen">
+				<h1>Phone Finder</h1>
+				<div class="game-icon"></div>
+				<h3>Click the direction the ring tone's coming from</h3>
+			</div>
+
+			<div id="start-redirect" class="screen">
+				<h1>Phone Finder</h1>
+				<div class="game-icon"></div>
+				<h3>Click the direction the ring tone's coming from</h3>
+				<h3 id="redirect-h3">Hard Mode</h3>
+				<button id="start-redirect-button" class="normal-button play-button">Start</button>
+			</div>
+
+			<div id="mid" class="screen">
+				<h1 class="round">Round n</h1>
+		
+				<div class="heart-box">
+					<span class="heart"><i class="bi bi-suit-heart-fill"></i></span>
+					<span class="heart"><i class="bi bi-suit-heart-fill"></i></span>
+					<span class="heart"><i class="bi bi-suit-heart-fill"></i></span>
+				</div>
+				<div class="button-box">
+					<!-- Remove value if not needed -->
+					<button class="sound-button" value="0"><i class="bi bi-arrow-up-left"></i></button>
+					<button class="sound-button" value="1"><i class="bi bi-arrow-up"></i></button>
+					<button class="sound-button" value="2"><i class="bi bi-arrow-up-right"></i></button>
+					<button class="sound-button" value="3"><i class="bi bi-arrow-left"></i></button>
+					<button class="sound-button" value="4"><i class="bi bi-dot"></i></button>
+					<button class="sound-button" value="5"><i class="bi bi-arrow-right"></i></button>
+					<button class="sound-button" value="6"><i class="bi bi-arrow-down-left"></i></button>
+					<button class="sound-button" value="7"><i class="bi bi-arrow-down"></i></button>
+					<button class="sound-button" value="8"><i class="bi bi-arrow-down-right"></i></button>
+				</div>
+			</div>
+
+			<div id="end" class="screen">
+				<h1 class="round">Round n</h1>
+				<div class="game-icon"></div>
+				<h3 id="stats-h3">Nice work! Try again or check out your stats over <a href="stats.html" style="color: var(--mainColor);">here</a>.</h3>
+				<button id="play-button"  class="normal-button">Play</button>
+				<button id="retry-button"  class="normal-button play-button">Try Again</button>
+			</div>
+		</div>
+		<div class="container global-stats">
+			<h1>Global Statistics</h1>
+			<canvas class="chart-js" ></canvas>
+		</div>
+	</div>
+</body>
+
+	<script src="app.js" charset="utf-8"></script>
+	<script src="index.js" charset="utf-8"></script>
+	
+	<link rel="stylesheet" href="play.css">
+	<link rel="stylesheet" href="style.css">
+</body>
+</html>
