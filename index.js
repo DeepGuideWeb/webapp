@@ -34,8 +34,12 @@ retryBt.addEventListener('click', () => {
 	swapFocus4(startRedirect);
 });
 
-global.addEventListener('click', () => {
+function scroll2global(){
 	global.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+}
+
+global.addEventListener('click', () => {
+	scroll2global()
 });
 
 if (Object.keys(soundPackSet).length < 2) playBt.style.display = 'none';
@@ -201,6 +205,8 @@ function init(packName){
 	startTime();
 }
 
+var globalRef = '<a href="javascript:void(0)" onclick="javascript:scroll2global()" style="color: var(--mainColor);">global stats</a>';
+
 //Gets called on button press
 function action(btn){
 	if (gameState != 'midGame') return null;
@@ -224,7 +230,7 @@ function action(btn){
 		rightButtonAnim(btn);
 		if (gameRound >= maxRounds) {
 			endGame();
-			statsH3.innerHTML = `Nice work! ${heartsMessage()} <br> Play again or check out your stats over <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
+			statsH3.innerHTML = `Nice work! ${heartsMessage()} <br> Play again or check your score against the ${globalRef}, or see your personal stats <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
 		}
 	}
 	else {
@@ -254,7 +260,7 @@ function endGame(){
 	if (stats[soundPack].bestRound < gameRound) stats[soundPack].bestRound = gameRound;
 	saveStats();
 	pushProgress(stats.id, soundPack, gameRound);
-	statsH3.innerHTML = `Nice work! Try again or check out your stats over <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
+	statsH3.innerHTML = `Nice work! Play again or check your score against the ${globalRef}, or see your personal stats <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
 	setTimeout(() => {
 		swapFocus4(end);
 	}, 300);
