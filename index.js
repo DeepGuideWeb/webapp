@@ -6,7 +6,7 @@ var startRedirect = document.querySelector('#start-redirect');
 var mid = document.querySelector('#mid');
 var end = document.querySelector('#end');
 
-const debug = false;
+
 
 //Start Screen
 var startBt = document.querySelector('#start-redirect-button');
@@ -73,7 +73,6 @@ Object.entries(soundPackSet).forEach(p => {
 document.querySelectorAll('.play-button').forEach(pb => {
 	pb.addEventListener('click', () => {
 		popIn3(pb.value);
-		console.log('What: ' + pb.value);
 	})
 });
 
@@ -154,7 +153,6 @@ function stop(){
 
 //Starts the game and resets all game elements
 function init(packName){
-	console.log(packName);
 	hearts = 3;
 	gameRound = 1;
 	trueRound = 1;
@@ -207,10 +205,21 @@ function init(packName){
 
 var globalRef = '<a href="javascript:void(0)" onclick="javascript:scroll2global()" style="color: var(--mainColor);">global stats</a>';
 
+function cool(obj){
+	let per = (obj.wins * 100 /  obj.totalPlayers).toFixed(1);
+	statsH3.innerHTML += `<br>${(per < 20) ? 'Only' : ''} ${per}% of players made it here`;
+}
+
 //Gets called on button press
 function action(btn){
 	if (gameState != 'midGame') return null;
-	if (trueRound == 1) stats[soundPack].totalGames++;
+	if (trueRound == 1) {
+		stats[soundPack].totalGames++;
+		saveStats();
+		if (stats[soundPack].totalGames == 1) {
+			pushPlayers(soundPack);
+		}
+	}
 	//✓check if button was right
 	let b = btn;
 	let p = playing;
@@ -230,7 +239,14 @@ function action(btn){
 		rightButtonAnim(btn);
 		if (gameRound >= maxRounds) {
 			endGame();
-			statsH3.innerHTML = `Nice work! ${heartsMessage()} <br> Play again or check your score against the ${globalRef}, or see your personal stats <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
+			statsH3.innerHTML = `You won! ${heartsMessage()} <br> Play again or check your score against the ${globalRef}, or see your personal stats <a href="stats.html?mode=${soundPack}" style="color: var(--mainColor);">here</a>.`;
+			processWins(soundPack, cool);
+			if (!stats[soundPack].won) {
+				//push
+				stats[soundPack].won = true;
+				saveStats();
+				pushWin(soundPack);
+			}
 		}
 	}
 	else {
@@ -383,7 +399,7 @@ function timeElapsed(){
 //Draw graph, get's called by getMetric
 function parseMetrics(obj) {
 	let arr = []
-	for(let i = 1; i < 32; i++){
+	for(let i = 1; i < 30; i++){
 		let o = obj[i];
 		arr.push((o != undefined) ? o : 0)
 		
@@ -396,7 +412,7 @@ function parseMetrics(obj) {
 		return a + b;
 	})
 
-    var lab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+    var lab = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 'Win'];
 	
 
 

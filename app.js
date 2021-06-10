@@ -1,4 +1,5 @@
 const version = 25;
+const debug = false;
 const soundPackSet = {
 	'2_8_DU_phone3shorter_irc_1037': 'Play',
 	//'3_3_DU_phone3shorter_irc_1037': 'Hard',
@@ -95,7 +96,7 @@ function newSettings(){
 
 function newStats(){
 	stats = {
-		id: myHash(Math.random()),
+		id: debug ? 'DEBUG' : myHash(Math.random()),
 	};
 	Object.keys(soundPackSet).forEach(key => {
 		stats[key] = {
@@ -105,6 +106,7 @@ function newStats(){
 			totalCorrectY: 0,
 			totalCorrects: 0,
 			bestRound: 0,
+			won: false,
 		}
 	});
 }

@@ -100,4 +100,27 @@ function getProgression(name, pack, func){
 	});
 }
 
+function pushWin(pack){
+	const updates = {};
+	updates[`stats/${pack}/wins/`] = firebase.database.ServerValue.increment(1);
+	firebase.database().ref().update(updates);
+}
 
+function pushPlayers(pack){
+	const updates = {};
+	updates[`stats/${pack}/totalPlayers/`] = firebase.database.ServerValue.increment(1);
+	firebase.database().ref().update(updates);
+}
+
+function processWins(pack, func){
+	firebase.database().ref(`stats/${pack}/${name}/`).get().then((snapshot) => {
+		if (snapshot.exists()) {
+			func(snapshot.val());
+		} else {
+			console.log('elese');
+		}
+		}).catch((error) => {
+		console.error(error);
+		return 'error';
+	});
+}
